@@ -10,3 +10,5 @@ pom.xml
 *.log
 /.idea
 omhome.iml
+.nrepl-port
+/resources/public/js/site.js
