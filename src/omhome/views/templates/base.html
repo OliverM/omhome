@@ -2,7 +2,9 @@
 <html>
   <head>
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Welcome to omhome</title>
+    <META name="viewport" content="width=device-width, initial-scale=1.0">
+    <META name="description" content="Blog posts, web experiments and more by Oliver Mooney">
+    <title>Oliver Mooney's corner of the web</title>
   </head>
   <body class = "pure-skin-omhome">
 
@@ -13,16 +15,17 @@
               <li><a href="{{servlet-context}}/">Home</a></li>
               <li><a href="{{servlet-context}}/about">About</a></li>
               <li><a href="{{servlet-context}}/cljsexample">Clojurescript</a></li>
-              <li><a href = "#">Colophon</a></li>
+              <li class="pure-menu-disabled"><a href = "#">Colophon</a></li>
           </ul>
       </div>
 
-    <div class="container">
+    <div class = "content">
       {% block content %}
       {% endblock %}
     </div>
     <!-- scripts and styles -->
-    {% style "/css/pure-custom.css" %}
+      {% style "/css/pure-custom.css" %}
+      {% style "/css/pure.0.4.2.min.css" %}
     <script type="text/javascript">
       var context = "{{servlet-context}}";
     </script>
