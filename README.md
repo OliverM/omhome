@@ -8,6 +8,7 @@ A personal website, using [Luminus](http://www.luminusweb.net) as a starting poi
 2. Drop Selmer and migrate HTML templating to [Enlive](https://github.com/cgrand/enlive)
 3. Develop a miminal PureCSS theme
 4. Deploy to host
+5. Integrate Github activity as a sidebar
 
 ## Prerequisites
 
