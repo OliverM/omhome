@@ -1,27 +1,37 @@
 # omhome
 
-A personal website, using [Luminus](http://www.luminusweb.net) as a starting point.
+A first pass at implementing a personal website using clojure. This implementation is initially a static site. Code only; blog and styling content are deliberately excluded in the hope that this might help ensure it'll be useful for somebody else.
 
-**TODO:**
+## Installation
 
-1. Migrate from Luminus' default starting point of Bootstrap to [PureCSS](http://purecss.io). Bootstrap comes with jQuery which'll interfere with other content relying on [SproutCore](http://www.sproutcore.com), [Facebook React](http://facebook.github.io/react/) or (to a far lesser extent) [D3](http://d3js.org)
-2. Drop Selmer and migrate HTML templating to [Enlive](https://github.com/cgrand/enlive)
-3. Develop a miminal PureCSS theme
-4. Deploy to host
-5. Integrate Github activity as a sidebar
+Download from github, if you like: https://github.com/OliverM/omhome
 
-## Prerequisites
+## Usage
 
-You will need [Leiningen][1] 2.0 or above installed.
+TBD
 
-[1]: https://github.com/technomancy/leiningen
+## Options
 
-## Running
+FIXME: listing of options this app accepts.
 
-To start a web server for the application, run:
+## Examples
 
-    lein ring server
+The main (and potentially only) example should be visible at http://olivermooney.com
+
+### Bugs
+
+Is the current lack of functionality a bug?
+
+### To Do
+1. Follow the steps in http://cjohansen.no/building-static-sites-in-clojure-with-stasis as a starting point
+2. Setup a basic implementation using (PureCSS)[http://purecss.io] as a neat minimal starting point that doesn't interfere by pulling in libraries like jQuery.
+3. Deploy a this minimal version to a host for testing purposes
+4. Generate straight HTML templates and populate them using Enlive; might even be able to use the PureCSS example directly??
+5. Integration; twitter & github activity, linkedin...?
 
 ## License
 
-Copyright © 2014 Oliver Mooney
+Copyright © 2014 Oliver Mooney.
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.

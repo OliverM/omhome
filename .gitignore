@@ -3,12 +3,8 @@
 /classes
 /checkouts
 pom.xml
+pom.xml.asc
 *.jar
 *.class
 /.lein-*
-/.env
-*.log
-/.idea
-omhome.iml
-.nrepl-port
-/resources/public/js/site.js
+/.nrepl-port
