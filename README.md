@@ -4,7 +4,7 @@ A first pass at implementing a personal website using clojure. This implementati
 
 ## Installation
 
-Download from github, if you like: https://github.com/OliverM/omhome
+Download from [GitHub](https://github.com/OliverM/omhome), if you like.
 
 ## Usage
 
@@ -24,9 +24,9 @@ Is the current lack of functionality a bug?
 
 ### To Do
 1. Follow the steps in http://cjohansen.no/building-static-sites-in-clojure-with-stasis as a starting point
-2. Setup a basic implementation using (PureCSS)[http://purecss.io] as a neat minimal starting point that doesn't interfere by pulling in libraries like jQuery.
+2. Setup a basic implementation using [PureCSS](http://purecss.io) as a neat minimal starting point that doesn't interfere by pulling in libraries like jQuery.
 3. Deploy a this minimal version to a host for testing purposes
-4. Generate straight HTML templates and populate them using Enlive; might even be able to use the PureCSS example directly??
+4. Generate straight HTML templates and populate them using Enlive; might even be able to use the PureCSS blog example directly??
 5. Integration; twitter & github activity, linkedin...?
 
 ## License
