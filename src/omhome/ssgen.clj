@@ -15,11 +15,13 @@
      [:div.logo "olivermooney.com"]
      [:div.body page]]))
 
-(defn about-page [request]
-  (layout-page (slurp (io/resource "fragments/about.html"))))
+(defn content->pages [pages]
+  (zipmap (keys pages)
+          (map layout-page (vals pages))))
 
 (defn get-pages []
-  (merge (stasis/slurp-directory "resources/pages" #".*\.(html|css|js)")
-         {"/about/" about-page}))
+  (merge (stasis/slurp-directory "resources/pages" #".*\.(html|css|js$)")
+         (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))))
 
 (def app (stasis/serve-pages get-pages))
+
