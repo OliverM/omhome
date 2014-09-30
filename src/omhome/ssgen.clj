@@ -20,8 +20,9 @@
           (map layout-page (vals pages))))
 
 (defn get-pages []
-  (merge (stasis/slurp-directory "resources/pages" #".*\.(html|css|js$)")
-         (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))))
+  (stasis/merge-page-sources
+    {:pages (stasis/slurp-directory "resources/pages" #".*\.(html|css|js$)")
+     :templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))}))
 
 (def app (stasis/serve-pages get-pages))
 
