@@ -41,8 +41,14 @@
   (zipmap (keys pages)
           (map #(highlight-code-blocks %) (vals pages))))
 
+(defn lazy-pages [pages]
+  (zipmap (keys pages)
+          (map #(fn [req] %) (vals pages))))
+
 (defn prepare-pages []
-  (highlight-code (get-basic-pages)))
+  (-> (get-basic-pages)
+      highlight-code
+      lazy-pages))
 
 (def app (stasis/serve-pages prepare-pages))
 
