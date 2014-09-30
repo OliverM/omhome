@@ -7,7 +7,9 @@
                  [stasis "2.2.2"]
                  [ring "1.3.1"]
                  [hiccup "1.0.5"]
-                 [me.raynes/cegdown "0.1.1"]]
+                 [me.raynes/cegdown "0.1.1"]
+                 [enlive "1.1.5"]
+                 [clygments "0.1.1"]]
   :ring {:handler omhome.ssgen/app}
   :main ^:skip-aot omhome.core
   :target-path "target/%s"
