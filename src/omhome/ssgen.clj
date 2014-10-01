@@ -5,6 +5,7 @@
             [omhome.highlight :refer [highlight-code-blocks]]
             [clojure.java.io :as io]
             [clojure.string :as str]
+            [optimus.export]
             [optimus.assets :as assets]
             [optimus.link :as link]
             [optimus.optimizations :as optimisations]
@@ -32,7 +33,7 @@
                (vals pages))))
 
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
-  [:autolinks :fenced-code-blocks :strikethrough])          ;; TODO: leaving off the :smartypants option for now (circle back when the site is live)
+  [:autolinks :fenced-code-blocks :strikethrough :smartypants])          ;; TODO: leaving off the :smartypants option for now (circle back when the site is live)
 
 ;; rework the stasis map of filenames to source content created using markdown to use paths and html
 (defn markdown->pages [markdown-content]
@@ -54,9 +55,18 @@
   (zipmap (keys pages)
           (map #(partial prepare-page %) (vals pages))))
 
+(defn final-pages []
+  (prepare-pages (get-basic-pages)))
+
 (def app
-  (optimus/wrap (stasis/serve-pages (prepare-pages (get-basic-pages)))
+  (optimus/wrap (stasis/serve-pages final-pages)
                 get-assets
                 optimisations/all
                 serve-live-assets))
 
+(def export-dir "dist/OliverM.github.io")
+(defn export []
+  (let [assets (optimisations/all (get-assets) {})]
+    (stasis/empty-directory! export-dir)
+    (optimus.export/save-assets assets export-dir)
+    (stasis/export-pages (final-pages) export-dir {:optimus-assets assets})))
