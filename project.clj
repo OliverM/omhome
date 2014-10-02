@@ -15,5 +15,7 @@
   :main ^:skip-aot omhome.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :dev {:plugins [[lein-ring "0.8.12"]]}}
+             :dev {:plugins [[lein-ring "0.8.12"]]}
+             :test {:dependencies [[midje "1.6.3"]]
+                    :plugins [[lein-midje "3.1.3"]]}}
   :aliases {"export-site" ["run" "-m" "omhome.ssgen/export"]})

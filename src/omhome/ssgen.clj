@@ -64,7 +64,7 @@
                 optimisations/all
                 serve-live-assets))
 
-(def export-dir "dist/OliverM.github.io")
+(def export-dir "dist")
 (defn export []
   (let [assets (optimisations/all (get-assets) {})]
     (stasis/empty-directory! export-dir)
