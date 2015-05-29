@@ -1,7 +1,19 @@
+@import url(1505-QRZYWD.css);
 @import url(pygments.css);
 
 body {
+    -moz-font-feature-settings: "liga", "kern";
+    -moz-font-feature-settings:"liga=1, kern=1";
+    -ms-font-feature-settings:"liga", "kern";
+    -o-font-feature-settings:"liga", "kern";
+    -webkit-font-feature-settings:"liga", "kern";
+    font-feature-settings: "liga", "kern";
+
     font: 16px Helvetica, arial, freesans, clean, sans-serif;
     line-height: 1.5;
+
+    width: 90%;
+    max-width: 48em;
+    padding: 2em;
     margin: 0 10px;
 }

@@ -10,7 +10,8 @@
                  [me.raynes/cegdown "0.1.1"]
                  [enlive "1.1.5"]
                  [clygments "0.1.1"]
-                 [optimus "0.17.1"]]
+                 [optimus "0.17.1"]
+                 [aprint "0.1.3"]]
   :ring {:handler omhome.ssgen/app}
   :main ^:skip-aot omhome.core
   :target-path "target/%s"

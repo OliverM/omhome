@@ -1,0 +1,52 @@
+/*
+        This font software is the property of Commercial Type.
+
+        You may not modify the font software, use it on another website, or install it on a computer.
+
+        License information is available at http://commercialtype.com/eula
+        For more information please visit Commercial Type at http://commercialtype.com or email us at info[at]commercialtype.com
+
+        Copyright (C) 2013 Schwartzco Inc.
+        License: 1505-QRZYWD     
+*/
+
+
+@font-face {
+  font-family: 'Publico Text Web';
+  src: url('PublicoText-Roman-Web.eot');
+  src: url('PublicoText-Roman-Web.eot?#iefix') format('embedded-opentype'),
+     url('PublicoText-Roman-Web.woff') format('woff'),
+     url('PublicoText-Roman-Web.ttf') format('truetype'),
+     url('PublicoText-Roman-Web.svg#Publico Text Web') format('svg');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.PublicoText-Roman-Web {
+  font-family: 'Publico Text Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Publico Text Web';
+  src: url('PublicoText-Italic-Web.eot');
+  src: url('PublicoText-Italic-Web.eot?#iefix') format('embedded-opentype'),
+     url('PublicoText-Italic-Web.woff') format('woff'),
+     url('PublicoText-Italic-Web.ttf') format('truetype'),
+     url('PublicoText-Italic-Web.svg#Publico Text Web') format('svg');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.PublicoText-Italic-Web {
+  font-family: 'Publico Text Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
