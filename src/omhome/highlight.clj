@@ -1,12 +1,13 @@
 (ns omhome.highlight
   (:require [clojure.java.io :as io]
             [clygments.core :as pygments]
-            [net.cgrand.enlive-html :as enlive]))
+            [net.cgrand.enlive-html :as enlive])
+  (:import (java.io StringReader)))
 
 (defn- unwrap-pygments-code [highlighted]
   "Fix Pygments' over-zealous wrapping of code in <div> and <pre> tags, already present in our content"
   (-> highlighted
-      java.io.StringReader.
+      StringReader.
       enlive/html-resource
       (enlive/select [:pre])
       first

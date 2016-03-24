@@ -8,7 +8,7 @@
                  [ring "1.3.2"]
                  [hiccup "1.0.5"]
                  [me.raynes/cegdown "0.1.1"]
-                 [enlive "1.1.5"]
+                 [enlive "1.1.6"]
                  [clygments "0.1.1"]
                  [optimus "0.17.1"]
                  [aprint "0.1.3"]]
