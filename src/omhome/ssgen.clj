@@ -13,7 +13,9 @@
             [optimus.strategies :refer [serve-live-assets]]))
 
 (defn get-assets []
-  (assets/load-assets "pages" [#".*"]))
+  (concat
+    (assets/load-assets "pages" [#".*"])
+    (assets/load-assets "cljspages/css" [#".*"])))
 
 (defn layout-page [req page]
   (html5
