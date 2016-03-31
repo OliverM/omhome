@@ -11,12 +11,28 @@
                  [enlive "1.1.6"]
                  [clygments "0.1.1"]
                  [optimus "0.18.4"]
-                 [aprint "0.1.3"]]
+                 [midje "1.8.3"]
+                 [aprint "0.1.3"]
+
+                 [org.clojure/clojurescript "1.8.40"]
+                 [devcards "0.2.1-6"]
+
+                 ]
   :ring {:handler omhome.ssgen/app}
   :main ^:skip-aot omhome.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :dev {:plugins [[lein-ring "0.9.7"]]}
-             :test {:dependencies [[midje "1.8.3"]]
-                    :plugins [[lein-midje "3.2"]]}}
+             :dev {:plugins [[lein-ring "0.9.7"]
+                             [lein-figwheel "0.5.1"]
+                             [lein-midje "3.2"]]}}
+  :cljsbuild {
+              :builds [{:id "devcards"
+                        :source-paths ["src/cljs"]
+                        :figwheel {:devcards true}
+                        :compiler {:main "omguest.core"
+                                   :asset-path "js/out"
+                                   :output-to "resources/cljspages/js/omhome.js"
+                                   :output-dir "resources/cljspages/js/out"}}
+                       ]
+              }
   :aliases {"export-site" ["run" "-m" "omhome.ssgen/export"]})

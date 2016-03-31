@@ -14,8 +14,9 @@
 
 (defn get-assets []
   (concat
+    (assets/load-assets "cljspages" [#".*\.(css$|eot$|svg$|ttf$|woff$)"])
     (assets/load-assets "pages" [#".*"])
-    (assets/load-assets "cljspages/css" [#".*"])))
+    ))
 
 (defn layout-page [req page]
   (html5
