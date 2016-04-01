@@ -8,6 +8,7 @@
             [optimus.export]
             [optimus.assets :as assets]
             [optimus.link :as link]
+            [optimus.html :as html]
             [optimus.optimizations :as optimisations]
             [optimus.prime :as optimus]
             [optimus.strategies :refer [serve-live-assets]]))
@@ -25,7 +26,7 @@
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
      [:title "Everything is Placeholder"]
-     [:link {:rel "stylesheet" :href (link/file-path req "/css/basic.css")}]]
+     (html/link-to-css-bundles req ["blog.css"])]
     [:body
      [:div.logo "olivermooney.com"]
      [:div.body page]]))
