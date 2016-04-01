@@ -13,11 +13,11 @@
 
 @font-face {
   font-family: 'Publico Text Web';
-  src: url('PublicoText-Roman-Web.eot');
-  src: url('PublicoText-Roman-Web.eot?#iefix') format('embedded-opentype'),
-     url('PublicoText-Roman-Web.woff') format('woff'),
-     url('PublicoText-Roman-Web.ttf') format('truetype'),
-     url('PublicoText-Roman-Web.svg#Publico Text Web') format('svg');
+  src: url('Publico/PublicoText-Roman-Web.eot');
+  src: url('Publico/PublicoText-Roman-Web.eot?#iefix') format('embedded-opentype'),
+     url('Publico/PublicoText-Roman-Web.woff') format('woff'),
+     url('Publico/PublicoText-Roman-Web.ttf') format('truetype'),
+     url('Publico/PublicoText-Roman-Web.svg#Publico Text Web') format('svg');
   font-weight:  400;
   font-style:   normal;
   font-stretch: normal;
@@ -33,11 +33,11 @@
 
 @font-face {
   font-family: 'Publico Text Web';
-  src: url('PublicoText-Italic-Web.eot');
-  src: url('PublicoText-Italic-Web.eot?#iefix') format('embedded-opentype'),
-     url('PublicoText-Italic-Web.woff') format('woff'),
-     url('PublicoText-Italic-Web.ttf') format('truetype'),
-     url('PublicoText-Italic-Web.svg#Publico Text Web') format('svg');
+  src: url('Publico/PublicoText-Italic-Web.eot');
+  src: url('Publico/PublicoText-Italic-Web.eot?#iefix') format('embedded-opentype'),
+     url('Publico/PublicoText-Italic-Web.woff') format('woff'),
+     url('Publico/PublicoText-Italic-Web.ttf') format('truetype'),
+     url('Publico/PublicoText-Italic-Web.svg#Publico Text Web') format('svg');
   font-weight:  400;
   font-style:   italic;
   font-stretch: normal;
