@@ -14,7 +14,7 @@
     (or
       (not (.startsWith href "/"))
       (contains? pages href)
-      (contains? pages (str href "index.html.old")))))
+      (contains? pages (str href "index.html")))))
 
 (fact
   "All links are valid"
