@@ -9,11 +9,11 @@ body {
     -webkit-font-feature-settings:"liga", "kern";
     font-feature-settings: "liga", "kern";
 
-    font: 16px Helvetica, arial, freesans, clean, sans-serif;
-    line-height: 1.5;
+    /*font: 16px Helvetica, arial, freesans, clean, sans-serif;*/
+    /*line-height: 1.5;*/
 
-    width: 90%;
-    max-width: 40em;
-    padding: 2em;
-    margin: 0 10px;
+    /*width: 90%;*/
+    /*max-width: 40em;*/
+    /*padding: 2em;*/
+    /*margin: 0 10px;*/
 }
