@@ -27,7 +27,7 @@
              :content "width=device-width, initial-scale=1.0"}]
      [:title "Everything is Placeholder"]
      (html/link-to-css-bundles req ["blog.css"])]
-    [:body.PublicoText-Roman-Web
+    [:body
      [:div.logo "olivermooney.com"]
      [:div.body page]]))
 
