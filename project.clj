@@ -16,7 +16,6 @@
 
                  [org.clojure/clojurescript "1.8.40"]
                  [devcards "0.2.1-6"]
-
                  ]
   :ring {:handler omhome.ssgen/app}
   :main ^:skip-aot omhome.core
@@ -25,14 +24,12 @@
              :dev {:plugins [[lein-ring "0.9.7"]
                              [lein-figwheel "0.5.1"]
                              [lein-midje "3.2"]]}}
-  :cljsbuild {
-              :builds [{:id "devcards"
+  :cljsbuild {:builds [{:id "devcards"
                         :source-paths ["src/cljs"]
                         :figwheel {:devcards true}
                         :compiler {:main "omguest.core"
                                    :asset-path "js/out"
                                    :output-to "resources/cljspages/js/omhome.js"
                                    :output-dir "resources/cljspages/js/out"}}
-                       ]
-              }
+                       ]}
   :aliases {"export-site" ["run" "-m" "omhome.ssgen/export"]})

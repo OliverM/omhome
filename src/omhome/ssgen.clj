@@ -17,23 +17,32 @@
   (concat
     (assets/load-assets "public/css" [#".*\.(eot$|svg$|ttf$|woff$)"])
     (assets/load-bundle "public/css" "blog.css" [#".*\.css$"])
+    (assets/load-bundle "cljspages/js" "om.js" [#".*\.js$"])
     ))
 
-(defn layout-page [req page]
-  (html5
-    [:head
-     [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
-     [:meta {:name "viewport"
-             :content "width=device-width, initial-scale=1.0"}]
-     [:title "Everything is Placeholder"]
-     (html/link-to-css-bundles req ["blog.css"])]
-    [:body
-     [:div.logo "olivermooney.com"]
-     [:div.body page]]))
+(defn layout-page
+  ([req page] (layout-page req page {}))
+  ([req page options]
+   (html5
+     [:head
+      [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
+      [:meta {:name    "viewport"
+              :content "width=device-width, initial-scale=1.0"}]
+      [:title "Everything is Placeholder"]
+      (html/link-to-css-bundles req ["blog.css"])
+      (when (:cljs options) (html/link-to-js-bundles req ["om.js"]))]
+     [:body
+      [:div.logo "olivermooney.com"]
+      [:div.body page]])))
 
 (defn content->pages [pages]
   (zipmap (keys pages)
           (map #(fn [req] (layout-page req %))
+               (vals pages))))
+
+(defn js-content->pages [pages]
+  (zipmap (keys pages)
+          (map #(fn [req] (layout-page req % {:cljs true}))
                (vals pages))))
 
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
@@ -48,6 +57,7 @@
 (defn get-basic-pages []
   (stasis/merge-page-sources
     {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
+     :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
      :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$"))}))
 
 (defn prepare-page [page req]
