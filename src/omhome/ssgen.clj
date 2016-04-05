@@ -17,7 +17,7 @@
   (concat
     (assets/load-assets "public/css" [#".*\.(eot$|svg$|ttf$|woff$)"])
     (assets/load-bundle "public/css" "blog.css" [#".*\.css$"])
-    (assets/load-bundle "cljspages/js" "om.js" [#".*\.js$"])
+    ;(assets/load-bundle "cljspages/js" "om.js" [#".*\.js$"])
     ))
 
 (defn layout-page
@@ -30,7 +30,8 @@
               :content "width=device-width, initial-scale=1.0"}]
       [:title "Everything is Placeholder"]
       (html/link-to-css-bundles req ["blog.css"])
-      (when (:cljs options) (html/link-to-js-bundles req ["om.js"]))]
+      ;(when (:cljs options) (html/link-to-js-bundles req ["om.js"]))
+      ]
      [:body
       [:div.logo "olivermooney.com"]
       [:div.body page]])))
