@@ -58,7 +58,7 @@
 (defn get-basic-pages []
   (stasis/merge-page-sources
     {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
-     :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
+     ;; :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
      :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$"))}))
 
 (defn prepare-page [page req]
