@@ -11,7 +11,9 @@
             [optimus.html :as html]
             [optimus.optimizations :as optimisations]
             [optimus.prime :as optimus]
-            [optimus.strategies :refer [serve-live-assets]]))
+            [optimus.strategies :refer [serve-live-assets]]
+
+            [omhome.helpers :refer :all]))
 
 (defn get-assets []
   (concat
@@ -34,7 +36,7 @@
       ]
      [:body
       [:div.logo "olivermooney.com"]
-      [:div.body page]])))
+      [:div.body (binding [*ns* (find-ns (symbol "omhome.ssgen"))] (eval page))]])))
 
 (defn content->pages [pages]
   (zipmap (keys pages)
@@ -47,7 +49,17 @@
                (vals pages))))
 
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
-  [:autolinks :fenced-code-blocks :strikethrough :smartypants])          ;; TODO: leaving off the :smartypants option for now (circle back when the site is live)
+  [:autolinks :fenced-code-blocks :strikethrough :smartypants])
+
+(defn- local-eval
+  "Eval clojure code in this namespace. Only use with trusted code."
+  [data])
+
+(defn hiccup->pages
+  "Generate HTML pages from the supplied Hiccup fragments."
+  [hiccup-content]
+  (zipmap (map  #(str/replace % #"\.clj$" "/") (keys hiccup-content))
+          (map #(fn [req] (layout-page req (-> % read-string ))) (vals hiccup-content))))
 
 ;; rework the stasis map of filenames to source content created using markdown to use paths and html
 (defn markdown->pages [markdown-content]
@@ -57,7 +69,8 @@
 
 (defn get-basic-pages []
   (stasis/merge-page-sources
-    {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
+   {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
+    :templated-hiccup (hiccup->pages (stasis/slurp-directory "resources/fragments" #".*\.clj$"))
      ;; :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
      :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$"))}))
 
