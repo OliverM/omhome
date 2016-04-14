@@ -14,5 +14,6 @@
   [:li "The cursor keys are BAD because... reasons?"]
   [:li "Macros! Macros are the best. (Story about editing 23MB file here, long line lengths, v-a-t, automating in a macro)"]
   [:li "Going backwards through text or shrinking text selections seems arbitrarily hard"]
-  [:li "The God-damned pound symbol (aka why I gave up on Emacs more than once)"]]]
+  [:li "The God-damned pound symbol (aka why I gave up on Emacs more than once)"]
+  [:li "You can't contract selections, only expand them (cf. Drew Neil again, c. 47:30). BOOOOO."]]]
 
