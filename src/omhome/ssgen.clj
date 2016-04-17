@@ -13,13 +13,13 @@
             [optimus.prime :as optimus]
             [optimus.strategies :refer [serve-live-assets]]
 
-            [omhome.helpers :refer :all]))
+            [omhome.helpers :refer :all]
+            [omhome.posts-meta :refer [posts]]))
 
 (defn get-assets []
   (concat
     (assets/load-assets "public/css" [#".*\.(eot$|svg$|ttf$|woff$)"])
     (assets/load-bundle "public/css" "blog.css" [#".*\.css$"])
-    ;(assets/load-bundle "cljspages/js" "om.js" [#".*\.js$"])
     ))
 
 (defn layout-page
@@ -30,7 +30,9 @@
       [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
       [:meta {:name    "viewport"
               :content "width=device-width, initial-scale=1.0"}]
-      [:title "Everything is Placeholder"]
+      (if (:title options)
+        [:title (:title options)]
+        [:title "Everything is Placeholder"])
       (html/link-to-css-bundles req ["blog.css"])
       ]
      [:body
@@ -45,9 +47,16 @@
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
   [:autolinks :fenced-code-blocks :strikethrough :smartypants])
 
-(defn- local-eval
-  "Eval clojure code in this namespace. Only use with trusted code."
-  [data])
+(defn [meta-post->page-loc]
+  "Convert a meta-post to a pair of a HTML page and a URI fragment. See omhome.meta-post/empty-post for a default post structure."
+  [meta-post]
+  [(str/replace (:file-path meta-post) #"\.clj$" "/")
+   (fn [req] (layout-page req (read-string (:file-path meta-post) meta-post)))])
+
+(defn meta-posts->page-map
+  "Convert a vector of meta-posts into a map of URI fragment and HTML page pairs, suitable for inclusion in Stasis' page map."
+  [meta-posts]
+  (map meta-post->page-loc meta-posts))
 
 (defn hiccup->pages
   "Generate HTML pages from the supplied Hiccup fragments."
