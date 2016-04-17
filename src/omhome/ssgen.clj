@@ -32,7 +32,6 @@
               :content "width=device-width, initial-scale=1.0"}]
       [:title "Everything is Placeholder"]
       (html/link-to-css-bundles req ["blog.css"])
-      ;(when (:cljs options) (html/link-to-js-bundles req ["om.js"]))
       ]
      [:body
       [:div.logo "olivermooney.com"]
@@ -41,11 +40,6 @@
 (defn content->pages [pages]
   (zipmap (keys pages)
           (map #(fn [req] (layout-page req %))
-               (vals pages))))
-
-(defn js-content->pages [pages]
-  (zipmap (keys pages)
-          (map #(fn [req] (layout-page req % {:cljs true}))
                (vals pages))))
 
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
