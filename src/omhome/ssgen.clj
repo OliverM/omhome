@@ -14,7 +14,8 @@
             [optimus.strategies :refer [serve-live-assets]]
 
             [omhome.helpers :refer :all]
-            [omhome.posts-meta :refer [posts]]))
+            [omhome.posts-meta :refer [posts]])
+  (:import [java.io.File]))
 
 (defn get-assets []
   (concat
@@ -47,16 +48,19 @@
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
   [:autolinks :fenced-code-blocks :strikethrough :smartypants])
 
-(defn [meta-post->page-loc]
+(defn meta-post->page-loc
   "Convert a meta-post to a pair of a HTML page and a URI fragment. See omhome.meta-post/empty-post for a default post structure."
   [meta-post]
-  [(str/replace (:file-path meta-post) #"\.clj$" "/")
-   (fn [req] (layout-page req (read-string (:file-path meta-post) meta-post)))])
+  [(-> meta-post :post-url
+       ;; File. .getAbsolutePath
+       ;; (str/replace  #"\.clj$" "/")
+       ) ;; Stasis' page map requires absolute paths to files
+   (fn [req] (layout-page req (read-string (slurp (:post-filepath meta-post))) meta-post))])
 
 (defn meta-posts->page-map
   "Convert a vector of meta-posts into a map of URI fragment and HTML page pairs, suitable for inclusion in Stasis' page map."
   [meta-posts]
-  (map meta-post->page-loc meta-posts))
+  (into {} (map meta-post->page-loc meta-posts)))
 
 (defn hiccup->pages
   "Generate HTML pages from the supplied Hiccup fragments."
@@ -73,7 +77,7 @@
 (defn get-basic-pages []
   (stasis/merge-page-sources
    {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
-    :templated-hiccup (hiccup->pages (stasis/slurp-directory "resources/fragments" #".*\.clj$"))
+    :templated-hiccup (meta-posts->page-map posts)
      ;; :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
      :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$"))}))
 
