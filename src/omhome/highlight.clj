@@ -1,5 +1,6 @@
 (ns omhome.highlight
   (:require [clojure.java.io :as io]
+            [clojure.string :as s]
             [clygments.core :as pygments]
             [net.cgrand.enlive-html :as enlive])
   (:import (java.io StringReader)))
