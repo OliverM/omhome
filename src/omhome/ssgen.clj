@@ -1,5 +1,6 @@
 (ns omhome.ssgen
   (:require [stasis.core :as stasis]
+            [ring.middleware.default-charset :refer [wrap-default-charset]]
             [hiccup.page :refer [html5]]
             [me.raynes.cegdown :as md]
             [omhome.highlight :refer [highlight-code-blocks]]
@@ -28,7 +29,7 @@
   ([req page options]
    (html5
      [:head
-      [:meta {:http-equiv "Content-Type" :content "text/html; charset=UTF-8"}]
+      [:meta {:charset "UTF-8"}]
       [:meta {:name    "viewport"
               :content "width=device-width, initial-scale=1.0"}]
       (if (:title options)
@@ -51,22 +52,13 @@
 (defn meta-post->page-loc
   "Convert a meta-post to a pair of a HTML page and a URI fragment. See omhome.meta-post/empty-post for a default post structure."
   [meta-post]
-  [(-> meta-post :post-url
-       ;; File. .getAbsolutePath
-       ;; (str/replace  #"\.clj$" "/")
-       ) ;; Stasis' page map requires absolute paths to files
+  [(meta-post :post-url)
    (fn [req] (layout-page req (read-string (slurp (:post-filepath meta-post))) meta-post))])
 
 (defn meta-posts->page-map
   "Convert a vector of meta-posts into a map of URI fragment and HTML page pairs, suitable for inclusion in Stasis' page map."
   [meta-posts]
   (into {} (map meta-post->page-loc meta-posts)))
-
-(defn hiccup->pages
-  "Generate HTML pages from the supplied Hiccup fragments."
-  [hiccup-content]
-  (zipmap (map  #(str/replace % #"\.clj$" "/") (keys hiccup-content))
-          (map #(fn [req] (layout-page req (-> % read-string ))) (vals hiccup-content))))
 
 ;; rework the stasis map of filenames to source content created using markdown to use paths and html
 (defn markdown->pages [markdown-content]
@@ -76,10 +68,9 @@
 
 (defn get-basic-pages []
   (stasis/merge-page-sources
-   {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$"))
+   {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$" :encoding "UTF-8"))
     :templated-hiccup (meta-posts->page-map posts)
-     ;; :templated-js-pages (js-content->pages (stasis/slurp-directory "resources/cljspages" #".*\.html$"))
-     :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$"))}))
+    :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$" :encoding "UTF-8"))}))
 
 (defn prepare-page [page req]
   (-> (if (string? page) page (page req))
@@ -93,10 +84,9 @@
   (prepare-pages (get-basic-pages)))
 
 (def app
-  (optimus/wrap (stasis/serve-pages final-pages)
-                get-assets
-                optimisations/all
-                serve-live-assets))
+  (-> (stasis/serve-pages final-pages)
+      (optimus/wrap get-assets optimisations/none serve-live-assets)
+      (wrap-default-charset "UTF-8")))
 
 (def export-dir "dist")
 
