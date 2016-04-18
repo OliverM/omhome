@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [stasis "2.3.0"]
                  [ring "1.4.0"]
+                 [ring/ring-headers "0.2.0"]
                  [hiccup "1.0.5"]
                  [me.raynes/cegdown "0.1.1"]
                  [enlive "1.1.6"]
