@@ -35,3 +35,6 @@
 
 (defn make-margin-note [text note-id] (make-note text note-id false))
 (defn make-side-note [text note-id] (make-note text note-id true))
+
+(defn code-block [text]
+  (md/to-html text markdown-parser))

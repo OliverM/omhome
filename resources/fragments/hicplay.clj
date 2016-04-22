@@ -25,4 +25,12 @@ Inline functions may not be the most intuitive means of generating complex HTML 
   (map param1 param2))"]]
   [:p "And really the only problem with this is the manual indenting the
  standard setup of Spacemacs requires, which does point towards a helper
- function. But how to implement?"]]]
+ function. But how to implement?"]
+  [:p "Testing the first pass at implementing this using the markdown parser machinery to inject raw HTML before applying the Hiccup parser."]
+  [:pre.code
+   (code-block "```clj
+(defn another-test-fn
+\"Sample doc string for this second test function...\"
+  [param1 param2]
+  (apply param1 param2))```")]
+  ]]
