@@ -46,9 +46,6 @@
           (map #(fn [req] (layout-page req %))
                (vals pages))))
 
-(def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
-  [:autolinks :fenced-code-blocks :strikethrough :smartypants])
-
 (defn meta-post->page-loc
   "Convert a meta-post to a pair of a HTML page and a URI fragment. See omhome.meta-post/empty-post for a default post structure."
   [meta-post]
@@ -63,7 +60,7 @@
 ;; rework the stasis map of filenames to source content created using markdown to use paths and html
 (defn markdown->pages [markdown-content]
   (zipmap (map #(str/replace % #"\.md$" "/") (keys markdown-content)) ;; convert paths ending in .md to paths ending in /
-          (map #(fn [req] (layout-page req (md/to-html % pegdown-options)))
+          (map #(fn [req] (layout-page req (md/to-html % markdown-parser)))
                (vals markdown-content)))) ;; convert markdown to html
 
 (defn get-basic-pages []

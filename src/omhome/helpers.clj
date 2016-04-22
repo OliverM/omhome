@@ -1,6 +1,12 @@
 (ns omhome.helpers
   (:require [hiccup.core :refer [html]]
+            [me.raynes.cegdown :as md]
             ))
+
+(def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
+  [:autolinks :fenced-code-blocks :strikethrough :smartypants])
+
+(def markdown-parser (md/make-pegdown pegdown-options))
 
 (defn- make-hiccup-name
   "Construct a hiccup keyword name from the supplied classes & ids"
