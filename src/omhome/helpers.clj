@@ -1,7 +1,6 @@
 (ns omhome.helpers
   (:require [hiccup.core :refer [html]]
-            [me.raynes.cegdown :as md]
-            ))
+            [me.raynes.cegdown :as md]))
 
 (def pegdown-options ;; see https://github.com/sirthias/pegdown for supported list, and https://github.com/Raynes/cegdown for examples
   [:autolinks :fenced-code-blocks :strikethrough :smartypants])
@@ -18,11 +17,10 @@
   [text note-id]
   [:label.margin-toggle.sidenote-number {:for note-id}]
   [(make-hiccup-name "input" "#" note-id "." "margin-toggle") {:type "checkbox"}]
-  [:span.sidenote text]
-  )
+  [:span.sidenote text])
 
-(defn make-note 
-  "Given note text, create a margin-note, or, if a note-id is present, a side-note, following the Tufte.CSS conventions, in Hiccup format."
+(defn- make-note
+  "Given note text, create a margin-note, or, if numbered? is true, a side-note, following the Tufte.CSS conventions, in Hiccup format."
   [text note-id numbered?]
   (html (if numbered?
            [:label.margin-toggle.sidenote-number {:for note-id}]
@@ -30,8 +28,7 @@
          [(make-hiccup-name "input" "#" note-id "." "margin-toggle") {:type "checkbox"}]
          (if numbered?
            [:span.sidenote text]
-           [:span.marginnote text]))
-  )
+           [:span.marginnote text])))
 
 (defn make-margin-note [text note-id] (make-note text note-id false))
 (defn make-side-note [text note-id] (make-note text note-id true))
