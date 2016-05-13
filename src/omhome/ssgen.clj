@@ -13,7 +13,6 @@
             [optimus.optimizations :as optimisations]
             [optimus.prime :as optimus]
             [optimus.strategies :refer [serve-live-assets]]
-
             [omhome.helpers :refer :all]
             [omhome.posts-meta :refer [posts]])
   (:import [java.io.File]))
