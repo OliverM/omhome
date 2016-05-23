@@ -33,6 +33,8 @@
   [:p "So, code-highlighting is implemented here by firing up Enlive, grovelling through the HTML for the relevant HTML elements, then spinnin Clygments up to process them. Surely we could adapt this for nice quotes, ellipses & the rest? Here's some tests:"
    [:ul [:li "Smart quotes: \"Testing quotes.\"  "]
     [:li "Ellipses: ... and ..."]
+    [:li "Triple primes: '''"]
+    [:li "Double primes: ''"]
     [:li "Smart single quotes: 'Boo!' and in a quoted title: \"Joe's\""]
     [:li "Dashes: en-dash -- and em-dash ---"]
     [:li "Finally, these transforms should be excluded from code blocks..."]]]]]

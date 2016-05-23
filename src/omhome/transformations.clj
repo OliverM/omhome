@@ -29,10 +29,28 @@
                    [:pre :code] #(assoc-in % [:attrs :class] "codehilite")))
 
 (defn- includes? [s] (enlive/text-pred #(s/includes? % s)))
-(defn- re= [s] (enlive/text-pred #(re-find s %)))
+(defn- re= [s] (enlive/text-pred #(boolean (re-find s %))))
 
 (def ellipsis "...")
+(def triple-prime "'''")
+(def double-prime "''")
+(def opening-double-quote #"(\W|^)\"(\S)")
+(def closing-double-quote #"(\u201c[^\"]*)\"([^\"]*$|[^\u201c\"]*\u201c)")
+(def closing-double-quote-supp #"([^0-9])\"")
+(def opening-apostrophe #"(\W|^)'(\S)")
+(def possessive-apostrophe #"i?([a-z])'([a-z])")
+(def closing-apostrophe #"i?((\u2018[^']*)|[a-z])'([^0-9]|$)")
 
 (defn smartypants [html]
   "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves."
-  (enlive/sniptest html [(includes? ellipsis)] #(s/replace % ellipsis "\u2026")))
+  (enlive/sniptest html
+                   [(includes? ellipsis)] #(s/replace % ellipsis "\u2026")
+                   [(includes? triple-prime)] #(s/replace % triple-prime "\u2034")
+                   [(includes? double-prime)] #(s/replace % double-prime "\u2033")
+                   [(re= opening-double-quote)] #(s/replace % opening-double-quote "$1\u201c$2")
+                   [(re= closing-double-quote)] #(s/replace % closing-double-quote "$1\u201d$2")
+                   [(re= closing-double-quote-supp)] #(s/replace % closing-double-quote-supp "$1\u201d")
+                   [(re= opening-apostrophe)] #(s/replace % opening-apostrophe "$1\u2018$2")
+                   [(re= possessive-apostrophe)] #(s/replace % possessive-apostrophe "$1\u2019$2")
+                   [(re= closing-apostrophe)] #(s/replace % closing-apostrophe "$1\u2019$3")
+                   ))
