@@ -34,8 +34,7 @@
       (if (:title options)
         [:title (:title options)]
         [:title "Everything is Placeholder"])
-      (html/link-to-css-bundles req ["blog.css"])
-      ]
+      (html/link-to-css-bundles req ["blog.css"])]
      [:body
       [:div.logo "olivermooney.com"]
       [:div.body (binding [*ns* (find-ns (symbol "omhome.ssgen"))] (eval page))]])))
@@ -69,10 +68,12 @@
     :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$" :encoding "UTF-8"))}))
 
 (defn prepare-page [page req]
+  "Standard final step applied to a HTML post."
   (-> (if (string? page) page (page req))
       highlight-code-blocks))
 
 (defn prepare-pages [pages]
+  "Apply a final processing step to all generated HTML posts."
   (zipmap (keys pages)
           (map #(partial prepare-page %) (vals pages))))
 
