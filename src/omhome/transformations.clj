@@ -1,4 +1,4 @@
-(ns omhome.highlight
+(ns omhome.transformations
   (:require [clojure.java.io :as io]
             [clojure.string :as s]
             [clygments.core :as pygments]
@@ -27,3 +27,12 @@
   (enlive/sniptest html
                    [:pre :code] highlight
                    [:pre :code] #(assoc-in % [:attrs :class] "codehilite")))
+
+(defn- includes? [s] (enlive/text-pred #(s/includes? % s)))
+(defn- re= [s] (enlive/text-pred #(re-find s %)))
+
+(def ellipsis "...")
+
+(defn smartypants [html]
+  "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves."
+  (enlive/sniptest html [(includes? ellipsis)] #(s/replace % ellipsis "\u2026")))

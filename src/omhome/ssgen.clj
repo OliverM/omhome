@@ -3,7 +3,6 @@
             [ring.middleware.default-charset :refer [wrap-default-charset]]
             [hiccup.page :refer [html5]]
             [me.raynes.cegdown :as md]
-            [omhome.highlight :refer [highlight-code-blocks]]
             [clojure.java.io :as io]
             [clojure.string :as str]
             [optimus.export]
@@ -14,6 +13,7 @@
             [optimus.prime :as optimus]
             [optimus.strategies :refer [serve-live-assets]]
             [omhome.helpers :refer :all]
+            [omhome.transformations :refer [highlight-code-blocks smartypants]]
             [omhome.posts-meta :refer [posts]])
   (:import [java.io.File]))
 
@@ -68,9 +68,11 @@
     :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$" :encoding "UTF-8"))}))
 
 (defn prepare-page [page req]
-  "Standard final step applied to a HTML post."
+  "Final steps applied to a HTML post."
   (-> (if (string? page) page (page req))
-      highlight-code-blocks))
+      ;; highlight-code-blocks
+      smartypants
+      ))
 
 (defn prepare-pages [pages]
   "Apply a final processing step to all generated HTML posts."

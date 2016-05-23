@@ -29,4 +29,10 @@
   [param1 param2]
   (apply param1 param2))")
   [:p "That seems to work, but still needs manual indenting."]
-  [:p "It looks like auto code highlighting is still v. problematic online: fixed-width, wraps in horizontal scroller automatically (which is horrible on mobile and not that great on desktop), no indenting, and fairly opaque HTML." ]]]
+  [:p "It looks like auto code highlighting is still v. problematic online: fixed-width, wraps in horizontal scroller automatically (which is horrible on mobile and not that great on desktop), no indenting, and fairly opaque HTML." ]
+  [:p "So, code-highlighting is implemented here by firing up Enlive, grovelling through the HTML for the relevant HTML elements, then spinnin Clygments up to process them. Surely we could adapt this for nice quotes, ellipses & the rest? Here's some tests:"
+   [:ul [:li "Smart quotes: \"Testing quotes.\"  "]
+    [:li "Ellipses: ... and ..."]
+    [:li "Smart single quotes: 'Boo!' and in a quoted title: \"Joe's\""]
+    [:li "Dashes: en-dash -- and em-dash ---"]
+    [:li "Finally, these transforms should be excluded from code blocks..."]]]]]
