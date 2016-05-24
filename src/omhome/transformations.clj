@@ -31,8 +31,6 @@
 (defn- includes? [s] (enlive/text-pred #(s/includes? % s)))
 (defn- re= [s] (enlive/text-pred #(boolean (re-find s %))))
 
-
-
 (defn smartypants [html]
   "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves. Regular expressions derived from smartquotesjs.com via https://github.com/kellym/smartquotesjs/blob/master/src/smartquotes.js"
   (let [ellipsis "..."
