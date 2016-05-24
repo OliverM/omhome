@@ -35,6 +35,6 @@
     [:li "Ellipses: ... and ..."]
     [:li "Triple primes: '''"]
     [:li "Double primes: ''"]
-    [:li "Smart single quotes: 'Boo!' and in a quoted title: \"Joe's\""]
+    [:li "Smart single quotes: 'Boo!' and in a quoted title: \"Joe's\". Contracting a year: '96, and standalone: ' (making sure not to replace triple-primes with three single quotes)."]
     [:li "Dashes: en-dash -- and em-dash ---"]
     [:li "Finally, these transforms should be excluded from code blocks..."]]]]]

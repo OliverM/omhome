@@ -40,6 +40,9 @@
 (def opening-apostrophe #"(\W|^)'(\S)")
 (def possessive-apostrophe #"i?([a-z])'([a-z])")
 (def closing-apostrophe #"i?((\u2018[^']*)|[a-z])'([^0-9]|$)")
+(def backwards-apostrophe #"i?(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))")
+(def shortened-years-apostrophe #"i?(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])")
+(def standalone-apostrophe "'")
 
 (defn smartypants [html]
   "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves."
@@ -53,4 +56,7 @@
                    [(re= opening-apostrophe)] #(s/replace % opening-apostrophe "$1\u2018$2")
                    [(re= possessive-apostrophe)] #(s/replace % possessive-apostrophe "$1\u2019$2")
                    [(re= closing-apostrophe)] #(s/replace % closing-apostrophe "$1\u2019$3")
+                   [(re= shortened-years-apostrophe)] #(s/replace % shortened-years-apostrophe "\u2019$2$3")
+                   [(re= backwards-apostrophe)] #(s/replace % backwards-apostrophe "$1\u2019")
+                   [(includes? standalone-apostrophe)] #(s/replace % standalone-apostrophe "\u2032")
                    ))
