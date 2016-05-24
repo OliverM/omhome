@@ -28,6 +28,8 @@ Is the current lack of functionality a bug?
 ### To Do
 - Update the Tufte CSS setup to use custom fonts & colours; tweak the CSS to match the new font metrics, and (most awkwardly?) integrate a proper baseline system to for visual consistency/pleasure
 - Generate index-creation functions using Enlive
+- Add optical margins a la [Typeset](https://github.com/davidmerfield/Typeset) for ever-closer CSS perfection
+- Build xml feeds for each topic/keyword
 - Integration; twitter & github activity, linkedin...? on those index pages & the post template
 - After all that, time for some fun stuff! Integrate Garden to allow for custom per-post layouts
 - Look at how to create & include per-post clojurescript libraries, to present & play with some interesting tech there (e.g. Quil & more)
