@@ -6,17 +6,12 @@ A first pass at implementing a personal website using clojure. This implementati
 
 Download from [GitHub](https://github.com/OliverM/omhome), if you like.
 
-## Usage
-
-TBD
-
 ## Examples
 
 The main (and potentially only) example should be visible at http://olivermooney.com
 
-### Bugs
-
-Is the current lack of functionality a bug?
+## Implementation Status
+Currently Hiccup- and Markdown-based workflows are in place for individual articles, with a meta structure available directing where the articles should be located by URL, and a few other features. Most pressing is a means of generating a front page with a list of articles; once that's in place, even in skeletal form, this'll be deployed as a starting point above (what's there at the moment is a few test articles you can find if you know the URLs directly).
 
 ### Done
 - Follow the steps in <http://cjohansen.no/building-static-sites-in-clojure-with-stasis> as a starting point
