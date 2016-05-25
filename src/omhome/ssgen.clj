@@ -70,8 +70,8 @@
 (defn prepare-page [page req]
   "Final steps applied to a HTML post."
   (-> (if (string? page) page (page req))
-      ;; highlight-code-blocks
       smartypants
+      highlight-code-blocks
       ))
 
 (defn prepare-pages [pages]

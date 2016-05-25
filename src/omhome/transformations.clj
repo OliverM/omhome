@@ -33,7 +33,8 @@
 
 (defn smartypants [html]
   "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves. Regular expressions derived from smartquotesjs.com via https://github.com/kellym/smartquotesjs/blob/master/src/smartquotes.js"
-  (let [ellipsis "..."
+  (let [not-code (enlive/but #{:pre  :code})
+        ellipsis "..."
         triple-prime "'''"
         double-prime "''"
         em-dash "---"
@@ -48,18 +49,18 @@
         shortened-years-apostrophe #"i?(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])"
         standalone-apostrophe "'"]
     (enlive/sniptest html
-                     [(includes? ellipsis)] #(s/replace % ellipsis "\u2026")
-                     [(includes? triple-prime)] #(s/replace % triple-prime "\u2034")
-                     [(includes? double-prime)] #(s/replace % double-prime "\u2033")
-                     [(includes? em-dash)] #(s/replace % em-dash "\u2014")
-                     [(includes? en-dash)] #(s/replace % en-dash "\u2013")
-                     [(re= opening-double-quote)] #(s/replace % opening-double-quote "$1\u201c$2")
-                     [(re= closing-double-quote)] #(s/replace % closing-double-quote "$1\u201d$2")
-                     [(re= closing-double-quote-supp)] #(s/replace % closing-double-quote-supp "$1\u201d")
-                     [(re= opening-apostrophe)] #(s/replace % opening-apostrophe "$1\u2018$2")
-                     [(re= possessive-apostrophe)] #(s/replace % possessive-apostrophe "$1\u2019$2")
-                     [(re= closing-apostrophe)] #(s/replace % closing-apostrophe "$1\u2019$3")
-                     [(re= shortened-years-apostrophe)] #(s/replace % shortened-years-apostrophe "\u2019$2$3")
-                     [(re= backwards-apostrophe)] #(s/replace % backwards-apostrophe "$1\u2019")
-                     [(includes? standalone-apostrophe)] #(s/replace % standalone-apostrophe "\u2032")
+                     [not-code :> (includes? ellipsis)] #(s/replace % ellipsis "\u2026")
+                     [not-code (includes? triple-prime)] #(s/replace % triple-prime "\u2034")
+                     [not-code (includes? double-prime)] #(s/replace % double-prime "\u2033")
+                     [not-code (includes? em-dash)] #(s/replace % em-dash "\u2014")
+                     [not-code (includes? en-dash)] #(s/replace % en-dash "\u2013")
+                     [not-code (re= opening-double-quote)] #(s/replace % opening-double-quote "$1\u201c$2")
+                     [not-code (re= closing-double-quote)] #(s/replace % closing-double-quote "$1\u201d$2")
+                     [not-code (re= closing-double-quote-supp)] #(s/replace % closing-double-quote-supp "$1\u201d")
+                     [not-code (re= opening-apostrophe)] #(s/replace % opening-apostrophe "$1\u2018$2")
+                     [not-code (re= possessive-apostrophe)] #(s/replace % possessive-apostrophe "$1\u2019$2")
+                     [not-code (re= closing-apostrophe)] #(s/replace % closing-apostrophe "$1\u2019$3")
+                     [not-code (re= shortened-years-apostrophe)] #(s/replace % shortened-years-apostrophe "\u2019$2$3")
+                     [not-code (re= backwards-apostrophe)] #(s/replace % backwards-apostrophe "$1\u2019")
+                     [not-code (includes? standalone-apostrophe)] #(s/replace % standalone-apostrophe "\u2032")
                      )))

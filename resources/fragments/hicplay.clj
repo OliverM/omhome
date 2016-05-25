@@ -37,4 +37,8 @@
     [:li "Double primes: ''"]
     [:li "Smart single quotes: 'Boo!' and in a quoted title: \"Joe's\". Contracting a year: '96, and standalone: ' (making sure not to replace triple-primes with three single quotes)."]
     [:li "Dashes: en-dash -- and em-dash ---"]
-    [:li "Finally, these transforms should be excluded from code blocks..."]]]]]
+    [:li "Implementation doesn't suffer from smartquotesjs's transformation of link elements: " [:a {:href "http://smartquotesjs.com"} "Does it?" ]]
+    [:li "Finally, these transforms should be excluded from code blocks: " (code-block "clj" "(defn smartypants-test
+  \"'96 was Joe's year... 24'''10'' \n-- or more! 'Boo!' \"
+  [param & more]
+  (apply print param1 more))")]]]]]
