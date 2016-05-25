@@ -29,6 +29,7 @@ Currently Hiccup- and Markdown-based workflows are in place for individual artic
       - unordered (all?) list items have poor leading
 - Generate index-creation functions using Enlive
   - Build xml feeds for each topic/keyword
+  - allow mini-articles to be woven in to main index only, if they're not given tags?
 - Integration (on those index pages & the post template):
   - twitter 
   - github activity
