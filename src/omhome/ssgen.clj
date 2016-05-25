@@ -71,7 +71,7 @@
   "Final steps applied to a HTML post."
   (-> (if (string? page) page (page req))
       smartypants
-      highlight-code-blocks
+      highlight-code-blocks ;; order is important! Smartypants ignores children of pre and code blocks; code-transform mucks with this structure, so must be subsequent.
       ))
 
 (defn prepare-pages [pages]
