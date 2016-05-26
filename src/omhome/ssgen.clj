@@ -14,6 +14,7 @@
             [optimus.strategies :refer [serve-live-assets]]
             [omhome.helpers :refer :all]
             [omhome.transformations :refer [highlight-code-blocks smartypants]]
+            [omhome.indices :refer [topic-index]]
             [omhome.posts-meta :refer [posts]])
   (:import [java.io.File]))
 
@@ -61,9 +62,15 @@
           (map #(fn [req] (layout-page req (md/to-html % markdown-parser)))
                (vals markdown-content)))) ;; convert markdown to html
 
+(defn indices
+  "Generate a map of index URLs to topic indices & the general index"
+  []
+  {"/index.html" (topic-index) })
+
 (defn get-basic-pages []
   (stasis/merge-page-sources
-   {:templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$" :encoding "UTF-8"))
+   {:indices (indices)
+    :templated-pages (content->pages (stasis/slurp-directory "resources/fragments" #".*\.html$" :encoding "UTF-8"))
     :templated-hiccup (meta-posts->page-map posts)
     :markdown-pages (markdown->pages (stasis/slurp-directory "resources/markdown" #".*\.md$" :encoding "UTF-8"))}))
 

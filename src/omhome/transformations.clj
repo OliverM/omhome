@@ -62,5 +62,4 @@
                      [not-code :> (re= closing-apostrophe)] #(s/replace % closing-apostrophe "$1\u2019$3")
                      [not-code :> (re= shortened-years-apostrophe)] #(s/replace % shortened-years-apostrophe "\u2019$2$3")
                      [not-code :> (re= backwards-apostrophe)] #(s/replace % backwards-apostrophe "$1\u2019")
-                     [not-code :> (includes? standalone-apostrophe)] #(s/replace % standalone-apostrophe "\u2032")
-                     )))
+                     [not-code :> (includes? standalone-apostrophe)] #(s/replace % standalone-apostrophe "\u2032"))))
