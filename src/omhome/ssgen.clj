@@ -65,7 +65,7 @@
 (defn indices
   "Generate a map of index URLs to topic indices & the general index"
   []
-  {"/index.html" (topic-index) })
+  {"/index.html" (fn [req] (layout-page req (topic-index))) })
 
 (defn get-basic-pages []
   (stasis/merge-page-sources
