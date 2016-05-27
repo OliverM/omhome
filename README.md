@@ -26,8 +26,8 @@ Currently Hiccup- and Markdown-based workflows are in place for individual artic
     - tweak the CSS to match the new font metrics, and (most awkwardly?) integrate a proper baseline system to for visual consistency/pleasure. This'll need integrating Tufte CSS with a CSS system like [Sassline](http://sassline.com), [Bourbon](http://bourbon.io), or similar - or, ideally, re-using Facjure's [Mesh](https://github.com/facjure/mesh), which seems to have all the features I'm looking for, only neatly wrapped up using Clojure & [Garden](https://github.com/noprompt/garden). Sass looks okay but if I can do it in Clojure, that's the path to take.
     - Add optical margins a la [Typeset](https://github.com/davidmerfield/Typeset) for ever-closer CSS perfection
     - patch unstyled gaps:
-      - unordered (all?) list items have poor leading
-- Generate index-creation functions using Enlive
+      - unordered (all?) list items have poor leading (fixed)
+- Generate index-creation functions using Enlive (basic impl done)
   - Build xml feeds for each topic/keyword
   - allow mini-articles to be woven in to main index only, if they're not given tags?
   - move all index generation to the meta-posts setup
