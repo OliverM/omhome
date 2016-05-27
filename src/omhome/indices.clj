@@ -1,6 +1,6 @@
 (ns omhome.indices
   (:require [net.cgrand.enlive-html :as html]
-            [omhome.posts-meta :refer [  posts]]))
+            [omhome.posts-meta :refer [posts]]))
 
 (defn enlive->html
   "Convert the enlive-transformed templates into html using a Java StringBuilder"
@@ -12,7 +12,7 @@
 
 (html/deftemplate topic-index* "fragments/index-template.html" [tag]
   [:section :> :p] (html/content "Introductory content for index placed by index generator.")
-  [:article] (html/clone-for [post posts]
+  [:article] (html/clone-for [post (filter :publish posts)]
                              [:h2] (html/content (html/html [:a {:href (:post-url post)} (:title post)]))))
 
 (defn topic-index

@@ -63,7 +63,8 @@
    (assoc empty-post
           :title "On Twitter"
           :post-url "/on-twitter/"
-          :post-filepath "resources/fragments/ontwitter.html")
+          :post-filepath "resources/fragments/ontwitter.html"
+          :publish true)
    (assoc empty-post
           :title "Test meta hiccup post"
           :post-url "/hicplay/"
@@ -71,11 +72,12 @@
    (assoc empty-post
           :title "On VIM"
           :post-url "/onvim/"
-          :post-filepath"resources/fragments/onvim.clj")])
+          :post-filepath"resources/fragments/onvim.clj"
+          :publish true)])
 
 (defn posts*
   "Generate the post list with converted content from the raw posts vector"
   [raw-posts]
-  (doall  (map gen-post raw-posts)))
+  (doall  (map gen-post raw-posts )))
 
 (def posts (posts* raw-posts))

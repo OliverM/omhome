@@ -35,7 +35,7 @@
         [:title "Everything is Placeholder"])
       (html/link-to-css-bundles req ["blog.css"])]
      [:body
-      [:div.logo "olivermooney.com"]
+      [:div.logo [:a {:href "/"} "olivermooney.com"]]
       [:div.body page]])))
 
 (defn meta-post->page-loc
