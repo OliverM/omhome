@@ -29,9 +29,9 @@
   {:title ""
    :post-url "" ;; a custom url for the post
    :post-filepath "" ;; a path to the post data. The filename suffix determines the post format (.md, .html or .clj for hiccup).
-   :post nil ;; the post content, transformed from its underlying representation
+   :post nil ;; the post content, transformed from its underlying representation by gen-post
    :publish false ;; set to true to include the post in the generated output, indices etc
-   :date ""
+   :date nil ;; TODO: should be a datetime representation easily transformed into the html4 datetime type
    :category ""
    :tags []
    :author "Oliver Mooney"
