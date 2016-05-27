@@ -30,6 +30,7 @@ Currently Hiccup- and Markdown-based workflows are in place for individual artic
 - Generate index-creation functions using Enlive
   - Build xml feeds for each topic/keyword
   - allow mini-articles to be woven in to main index only, if they're not given tags?
+  - move all index generation to the meta-posts setup
 - Integration (on those index pages & the post template):
   - twitter 
   - github activity
