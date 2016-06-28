@@ -37,7 +37,7 @@ Currently Hiccup- and Markdown-based workflows are in place for individual artic
   - linkedin...? 
 - After all that, time for some fun stuff!
   - Integrate Garden to allow for custom per-post layouts
-  - Look at how to create & include per-post clojurescript libraries, to present & play with some interesting tech there (e.g. Quil & more)
+  - Look at how to create & include per-post clojurescript libraries, to present & play with some interesting tech there (e.g. Quil, thi.ng, & more)
 
 ## License
 
