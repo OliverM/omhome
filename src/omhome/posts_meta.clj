@@ -37,7 +37,7 @@
    :author "Oliver Mooney"
    })
 
-(def tagset #{}) ;; any tags cited in meta post data but not found here will raise an error (to help catch tag typos)
+(def tagset #{}) ;; TODO any tags cited in meta post data but not found here will raise an error (to help catch tag typos)
 
 (def raw-posts
   [(assoc empty-post

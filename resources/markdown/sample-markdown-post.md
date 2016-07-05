@@ -32,3 +32,7 @@ Here's some smartypants tests:
 *  smart opening and closing single quotes 'Horrific!'
 
 Here's an internal [href](/about/) that should cause the site tests to fail if the closing "/" is removed.
+
+And here's a Maruku-style attribute list. 
+{: #test-id .test-class test-attr='test-val'}
+

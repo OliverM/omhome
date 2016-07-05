@@ -8,6 +8,7 @@
                  [ring "1.4.0"]
                  [ring/ring-headers "0.2.0"]
                  [hiccup "1.0.5"]
+                 [org.jruby/jruby-complete "9.1.2.0"]
                  [me.raynes/cegdown "0.1.1"]
                  [enlive "1.1.6"]
                  [clygments "0.1.1"]
