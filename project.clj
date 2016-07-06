@@ -11,6 +11,7 @@
                  [org.jruby/jruby-complete "9.1.2.0"]
                  [me.raynes/cegdown "0.1.1"]
                  [enlive "1.1.6"]
+                 [org.python/jython-standalone "2.5.3"]
                  [clygments "0.1.1"]
                  [garden "1.3.2"]
                  [optimus "0.18.4"]
