@@ -1,0 +1,23 @@
+/* Link to Fira Mono for code samples */
+
+@font-face{
+    font-family: 'Fira Mono';
+    src: url('FiraMono/FiraMono-Regular.eot');
+    src: local('Fira Mono'),
+         url('FiraMono/FiraMono-Regular.eot') format('embedded-opentype'),
+         url('FiraMono/FiraMono-Regular.woff') format('woff'),
+         url('FiraMono/FiraMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Fira Mono';
+    src: url('FiraMono/FiraMono-Bold.eot');
+    src: local('Fira Mono Bold'),
+         url('FiraMono/FiraMono-Bold.eot') format('embedded-opentype'),
+         url('FiraMono/FiraMono-Bold.woff') format('woff'),
+         url('FiraMono/FiraMono-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
