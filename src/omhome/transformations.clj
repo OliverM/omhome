@@ -6,7 +6,8 @@
   (:import (java.io StringReader)))
 
 (defn- unwrap-pygments-code [highlighted]
-  "Fix Pygments' over-zealous wrapping of code in <div> and <pre> tags, already present in our content"
+  "Fix Pygments' over-zealous wrapping of code in <div> and <pre> tags, already
+  present in our content"
   (-> highlighted
       StringReader.
       enlive/html-resource
@@ -15,7 +16,8 @@
       :content))
 
 (defn- highlight [enlive-node]
-  "Apply Pygments code highlighting to the supplied enlive node, picking up the desired language from applied CSS"
+  "Apply Pygments code highlighting to the supplied enlive node, picking up the
+  desired language from applied CSS"
   (let [code (->> enlive-node :content (apply str))
         lang (->> enlive-node :attrs :class keyword)]
     (assoc enlive-node :content (-> code
@@ -32,7 +34,10 @@
 (defn- re= [s] (enlive/text-pred #(boolean (re-find s %))))
 
 (defn smartypants [html]
-  "Convert straight quotes to curly, whether single or double, and your sets of three periods to ellipses, and, verily, your multiple dashes to their rightful selves. Regular expressions derived from smartquotesjs.com via https://github.com/kellym/smartquotesjs/blob/master/src/smartquotes.js"
+  "Convert straight quotes to curly, whether single or double, and your sets of
+  three periods to ellipses, and, verily, your multiple dashes to their rightful
+  selves. Regular expressions derived from smartquotesjs.com via
+  https://github.com/kellym/smartquotesjs/blob/master/src/smartquotes.js"
   (let [not-code (enlive/but #{:pre  :code})
         ellipsis "..."
         triple-prime "'''"

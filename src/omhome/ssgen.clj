@@ -39,13 +39,15 @@
       [:div.body page]])))
 
 (defn meta-post->page-loc
-  "Convert a meta-post to a pair of a HTML page and a URI fragment. See omhome.meta-post/empty-post for a default post structure."
+  "Convert a meta-post to a pair of a HTML page and a URI fragment. See
+  omhome.meta-post/empty-post for a default post structure."
   [meta-post]
   [(meta-post :post-url)
    (fn [req] (layout-page req (:post meta-post) ))])
 
 (defn meta-posts->page-map
-  "Convert a vector of meta-posts into a map of URI fragment and HTML page pairs, suitable for inclusion in Stasis' page map."
+  "Convert a vector of meta-posts into a map of URI fragment and HTML page
+  pairs, suitable for inclusion in Stasis' page map."
   [meta-posts]
   (into {} (map meta-post->page-loc meta-posts)))
 
@@ -64,7 +66,9 @@
   "Final steps applied to a HTML post."
   (-> (if (string? page) page (page req))
       smartypants
-      highlight-code-blocks ;; order is important! Smartypants ignores children of pre and code blocks; code-transform mucks with this structure, so must be subsequent.
+      highlight-code-blocks ;; order is important! Smartypants ignores children
+                            ;; of pre and code blocks; code-transform mucks with
+                            ;; this structure, so must be subsequent.
       ))
 
 (defn prepare-pages [pages]
@@ -86,4 +90,5 @@
   (let [assets (optimisations/all (get-assets) {})]
     (stasis/empty-directory! export-dir)
     (optimus.export/save-assets assets export-dir)
-    (stasis/export-pages (final-pages) export-dir {:optimus-assets assets})))
+    (stasis/export-pages (final-pages) export-dir
+                         {:optimus-assets assets})))
