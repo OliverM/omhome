@@ -15,5 +15,5 @@
     [:li "Going backwards through text or shrinking text selections seems arbitrarily hard"]
     [:li "The God-damned pound symbol (aka why I gave up on Emacs more than once) and how it works properly on the commandline for arbitrary reasons, but other keypresses just don't (forward & back in the repl?)"]
     [:li "You can't contract selections, only expand them (cf. Drew Neil again, c. 47:30). BOOOOO."]
-    [:li "Inadvertent deletions: the delete key 'd' is on the home row in command mode, and idly resting your fingers there on a sensitive keyboard, then performing a motion without noticing you've pressed d first, means part of your work can be deleted without realising. This has happened me enough times to be embarrassing."]]]]]
-
+    [:li "Inadvertent deletions: the delete key 'd' is on the home row in command mode, and idly resting your fingers there on a sensitive keyboard, then performing a motion without noticing you've pressed d first, means part of your work can be deleted without realising. This has happened me enough times to be embarrassing."]
+    [:li "Inadvertent deletions, part two: The delete key 'd' is also the second half of the Spacemacs escape-analogue 'fd' which cancels the current mode or action, returning you to command mode. Unless you're in neotree, in which case it ignores the f, interprets the d as delete, and pops up a small are-you-sure y/n prompt - so if your next task is to " [:b "y"]"ank something... poof!"]]]]]
