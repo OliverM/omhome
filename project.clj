@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [stasis "2.3.0"]
-                 [ring "1.4.0"]
+                 [ring "1.5.1"]
                  [ring/ring-headers "0.2.0"]
                  [hiccup "1.0.5"]
                  [org.jruby/jruby-complete "9.1.2.0"]
@@ -14,7 +14,7 @@
                  [org.python/jython-standalone "2.5.3"]
                  [clygments "0.1.1"]
                  [garden "1.3.2"]
-                 [optimus "0.18.4"]
+                 [optimus "0.19.2"]
                  [midje "1.8.3"]
                  [aprint "0.1.3"]]
   :ring {:handler omhome.ssgen/app}
